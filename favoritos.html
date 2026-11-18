@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnimeVerse - Favoritos</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0b0b12;color:#f5f5f5}
+header{background:#151520;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;border-bottom:1px solid #303040}
+.logo{font-size:28px;color:#a970ff;font-weight:bold;text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:#ccc;text-decoration:none;font-weight:bold}
+nav a:hover,.ativo{color:#a970ff}
+main{max-width:1200px;margin:40px auto;padding:0 25px;min-height:65vh}
+h2{border-left:4px solid #9747ff;padding-left:12px;margin-bottom:20px}
+p{color:#c5c5d0;line-height:1.6;margin-bottom:12px}
+.catalogo{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px;margin:25px 0}
+.card{background:#191925;border:1px solid #303040;border-radius:10px;overflow:hidden;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:#9747ff}
+.capa{height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:15px;font-size:23px;font-weight:bold;text-shadow:2px 2px 8px black}
+.info{padding:15px}
+.info p{font-size:13px;color:#aaa}
+.acoes{display:flex;justify-content:space-between;align-items:center}
+.coracao{background:none;border:0;color:#ff4f8b;font-size:24px;cursor:pointer}
+.btn{background:#9747ff;color:white;padding:12px 22px;border:0;border-radius:6px;text-decoration:none;display:inline-block}
+.btn:hover{background:#7629db}
+.vazio{color:#aaa;padding:20px 0}
+footer{background:#151520;text-align:center;padding:25px;color:#888;margin-top:50px}
+@media(max-width:650px){header{justify-content:center}nav{justify-content:center;gap:12px}nav a{font-size:13px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="index.html" class="logo">AnimeVerse</a>
+<nav>
+<a href="index.html" class="ativo">Início</a>
+<a href="animes.html">Animes</a>
+<a href="favoritos.html">Favoritos</a>
+<a href="generos.html">Gêneros</a>
+<a href="aleatorios.html">Aleatório</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</header>
+
+<main>
+<h2>♥ Meus favoritos</h2>
+<p>Aqui estão os animes que você salvou para assistir depois.</p>
+
+<div class="catalogo" id="listaFavoritos"></div>
+
+<p class="vazio" id="mensagem">
+Você ainda não adicionou nenhum anime aos favoritos.
+</p>
+
+<a href="animes.html" class="btn">Explorar animes</a>
+</main>
+
+<footer><p>© 2026 AnimeVerse - Todos os direitos reservados.</p></footer>
+
+<script>
+const animes=[
+{id:1,nome:"Jujutsu Kaisen",genero:"Ação",ano:2020,cor:"#63318c"},
+{id:2,nome:"Attack on Titan",genero:"Ação",ano:2013,cor:"#81462e"},
+{id:3,nome:"Frieren",genero:"Fantasia",ano:2023,cor:"#277b91"},
+{id:4,nome:"Death Note",genero:"Suspense",ano:2006,cor:"#454545"},
+{id:5,nome:"Spy x Family",genero:"Comédia",ano:2022,cor:"#397e6a"},
+{id:6,nome:"Violet Evergarden",genero:"Drama",ano:2018,cor:"#597caa"},
+{id:7,nome:"Fullmetal Alchemist",genero:"Ação",ano:2009,cor:"#9d6334"},
+{id:8,nome:"Re:Zero",genero:"Fantasia",ano:2016,cor:"#754c9c"},
+{id:9,nome:"Mob Psycho 100",genero:"Comédia",ano:2016,cor:"#b14a87"},
+{id:10,nome:"Your Lie in April",genero:"Drama",ano:2014,cor:"#b17c8e"},
+{id:11,nome:"Erased",genero:"Suspense",ano:2016,cor:"#426a91"},
+{id:12,nome:"Dr. Stone",genero:"Aventura",ano:2019,cor:"#b27b35"}
+];
+
+let favoritos=JSON.parse(localStorage.getItem("animeFavoritos"))||[];
+
+function mostrarFavoritos(){
+let container=document.getElementById("listaFavoritos");
+
+let lista=animes.filter(function(anime){
+return favoritos.includes(anime.id);
+});
+
+document.getElementById("mensagem").style.display=
+lista.length===0?"block":"none";
+
+container.innerHTML=lista.map(function(anime){
+return `<div class="card">
+<div class="capa" style="background:linear-gradient(145deg,${anime.cor},#17172c)">${anime.nome}</div>
+<div class="info">
+<h3>${anime.nome}</h3>
+<p>${anime.genero} • ${anime.ano}</p>
+<div class="acoes">
+<span style="font-size:12px;color:#aaa">Favorito</span>
+<button class="coracao" onclick="remover(${anime.id})">♥</button>
+</div>
+</div></div>`;
+}).join("");
+}
+
+function remover(id){
+favoritos=favoritos.filter(function(item){
+return item!==id;
+});
+
+localStorage.setItem("animeFavoritos",JSON.stringify(favoritos));
+mostrarFavoritos();
+}
+
+mostrarFavoritos();
+</script>
+
+</body>
+</html>

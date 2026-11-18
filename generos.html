@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnimeVerse - Gêneros</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0b0b12;color:#f5f5f5}
+header{background:#151520;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;border-bottom:1px solid #303040}
+.logo{font-size:28px;color:#a970ff;font-weight:bold;text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:#ccc;text-decoration:none;font-weight:bold}
+nav a:hover,.ativo{color:#a970ff}
+main{max-width:1200px;margin:40px auto;padding:0 25px;min-height:65vh}
+h2{border-left:4px solid #9747ff;padding-left:12px;margin-bottom:20px}
+p{color:#c5c5d0;line-height:1.6;margin-bottom:12px}
+.generos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin:30px 0}
+.genero-card{background:linear-gradient(145deg,#43235f,#191925);padding:35px 20px;border:1px solid #39304b;border-radius:10px;text-align:center;text-decoration:none;color:white;transition:.3s}
+.genero-card:hover{transform:translateY(-6px);border-color:#9747ff}
+.genero-card h3{font-size:23px;margin-bottom:10px}
+.genero-card p{font-size:14px}
+footer{background:#151520;text-align:center;padding:25px;color:#888;margin-top:50px}
+@media(max-width:650px){header{justify-content:center}nav{justify-content:center;gap:12px}nav a{font-size:13px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="index.html" class="logo">AnimeVerse</a>
+<nav>
+<a href="index.html" class="ativo">Início</a>
+<a href="animes.html">Animes</a>
+<a href="favoritos.html">Favoritos</a>
+<a href="generos.html">Gêneros</a>
+<a href="aleatorios.html">Aleatório</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</header>
+
+<main>
+
+<h2>Explore por gênero</h2>
+<p>Escolha uma categoria e descubra histórias do seu estilo favorito.</p>
+
+<div class="generos">
+
+<a href="animes.html?genero=A%C3%A7%C3%A3o" class="genero-card">
+<h3>⚔️ Ação</h3>
+<p>Lutas, desafios e aventuras emocionantes.</p>
+</a>
+
+<a href="animes.html?genero=Fantasia" class="genero-card">
+<h3>✨ Fantasia</h3>
+<p>Mundos mágicos e histórias extraordinárias.</p>
+</a>
+
+<a href="animes.html?genero=Drama" class="genero-card">
+<h3>🎭 Drama</h3>
+<p>Histórias profundas e emocionantes.</p>
+</a>
+
+<a href="animes.html?genero=Com%C3%A9dia" class="genero-card">
+<h3>☀️ Comédia</h3>
+<p>Momentos divertidos e descontraídos.</p>
+</a>
+
+<a href="animes.html?genero=Suspense" class="genero-card">
+<h3>🌑 Suspense</h3>
+<p>Mistérios e acontecimentos inesperados.</p>
+</a>
+
+<a href="animes.html?genero=Aventura" class="genero-card">
+<h3>🌎 Aventura</h3>
+<p>Explorações e grandes descobertas.</p>
+</a>
+
+</div>
+
+</main>
+
+<footer><p>© 2026 AnimeVerse - Todos os direitos reservados.</p></footer>
+
+</body>
+</html>

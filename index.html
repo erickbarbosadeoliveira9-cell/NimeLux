@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnimeVerse - Início</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0b0b12;color:#f5f5f5}
+header{background:#151520;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;border-bottom:1px solid #303040}
+.logo{font-size:28px;color:#a970ff;font-weight:bold;text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:#ccc;text-decoration:none;font-weight:bold}
+nav a:hover,.ativo{color:#a970ff}
+.banner{padding:90px 8%;min-height:370px;background:linear-gradient(90deg,#0b0b12,#171020dd),linear-gradient(135deg,#7039a0,#17172c)}
+.banner span{color:#bd91ff;letter-spacing:3px;font-weight:bold}
+.banner h1{font-size:45px;margin:15px 0}
+.banner p{color:#ccc;max-width:550px;line-height:1.7;margin-bottom:25px}
+.btn{background:#9747ff;color:white;padding:12px 22px;border:0;border-radius:6px;text-decoration:none;display:inline-block;cursor:pointer;font-weight:bold}
+.btn:hover{background:#7629db}
+main{max-width:1200px;margin:40px auto;padding:0 25px;min-height:60vh}
+.secao{margin-bottom:45px}
+h2{border-left:4px solid #9747ff;padding-left:12px;margin-bottom:20px}
+p{color:#c5c5d0;line-height:1.6;margin-bottom:12px}
+.catalogo{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px}
+.card{background:#191925;border:1px solid #303040;border-radius:10px;overflow:hidden;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:#9747ff}
+.capa{height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:15px;font-size:23px;font-weight:bold;text-shadow:2px 2px 8px black}
+.info{padding:15px}
+.info p{font-size:13px;color:#aaa}
+.acoes{display:flex;justify-content:space-between;align-items:center}
+.coracao{background:none;border:0;color:#aaa;font-size:24px;cursor:pointer}
+.coracao.ativo{color:#ff4f8b}
+footer{background:#151520;text-align:center;padding:25px;color:#888;margin-top:50px;border-top:1px solid #303040}
+@media(max-width:650px){header{justify-content:center}nav{justify-content:center;gap:12px}nav a{font-size:13px}.banner h1{font-size:32px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="index.html" class="logo">AnimeVerse</a>
+<nav>
+<a href="index.html" class="ativo">Início</a>
+<a href="animes.html">Animes</a>
+<a href="favoritos.html">Favoritos</a>
+<a href="generos.html">Gêneros</a>
+<a href="aleatorios.html">Aleatório</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</header>
+
+<section class="banner">
+<div>
+<span>SEU UNIVERSO DE ANIMES</span>
+<h1>Descubra novas histórias.</h1>
+<p>Explore diferentes mundos, conheça personagens incríveis e encontre seu próximo anime favorito.</p>
+<a href="animes.html" class="btn">Explorar animes</a>
+</div>
+</section>
+
+<main>
+
+<section class="secao">
+<h2>Bem-vindo ao AnimeVerse</h2>
+<p>Uma plataforma para descobrir animes, explorar gêneros e guardar suas histórias favoritas em um só lugar.</p>
+</section>
+
+<section class="secao">
+<h2>Animes em destaque</h2>
+<div class="catalogo" id="destaques"></div>
+</section>
+
+<section class="secao">
+<h2>Descubra algo novo</h2>
+<p>Está sem ideias do que assistir? Deixe nosso sistema escolher um anime para você.</p>
+<a href="aleatorio.html" class="btn">Anime aleatório</a>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 AnimeVerse - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+const animes=[
+{id:1,nome:"Jujutsu Kaisen",genero:"Ação",ano:2020,cor:"#63318c"},
+{id:2,nome:"Attack on Titan",genero:"Ação",ano:2013,cor:"#81462e"},
+{id:3,nome:"Frieren",genero:"Fantasia",ano:2023,cor:"#277b91"},
+{id:4,nome:"Death Note",genero:"Suspense",ano:2006,cor:"#454545"},
+{id:5,nome:"Spy x Family",genero:"Comédia",ano:2022,cor:"#397e6a"},
+{id:6,nome:"Violet Evergarden",genero:"Drama",ano:2018,cor:"#597caa"},
+{id:7,nome:"Fullmetal Alchemist",genero:"Ação",ano:2009,cor:"#9d6334"},
+{id:8,nome:"Re:Zero",genero:"Fantasia",ano:2016,cor:"#754c9c"},
+{id:9,nome:"Mob Psycho 100",genero:"Comédia",ano:2016,cor:"#b14a87"},
+{id:10,nome:"Your Lie in April",genero:"Drama",ano:2014,cor:"#b17c8e"},
+{id:11,nome:"Erased",genero:"Suspense",ano:2016,cor:"#426a91"},
+{id:12,nome:"Dr. Stone",genero:"Aventura",ano:2019,cor:"#b27b35"}
+];
+
+let favoritos=JSON.parse(localStorage.getItem("animeFavoritos"))||[];
+
+function criarCard(anime){
+let ativo=favoritos.includes(anime.id);
+return `<div class="card">
+<div class="capa" style="background:linear-gradient(145deg,${anime.cor},#17172c)">${anime.nome}</div>
+<div class="info">
+<h3>${anime.nome}</h3>
+<p>${anime.genero} • ${anime.ano}</p>
+<div class="acoes">
+<span style="font-size:12px;color:#aaa">Anime</span>
+<button class="coracao ${ativo?'ativo':''}" onclick="alternar(${anime.id})">${ativo?'♥':'♡'}</button>
+</div>
+</div></div>`;
+}
+
+function alternar(id){
+if(favoritos.includes(id)){
+favoritos=favoritos.filter(item=>item!==id);
+}else{
+favoritos.push(id);
+}
+localStorage.setItem("animeFavoritos",JSON.stringify(favoritos));
+mostrarDestaques();
+}
+
+function mostrarDestaques(){
+document.getElementById("destaques").innerHTML=
+[animes[0],animes[2],animes[3]].map(criarCard).join("");
+}
+
+mostrarDestaques();
+</script>
+
+</body>
+</html>
